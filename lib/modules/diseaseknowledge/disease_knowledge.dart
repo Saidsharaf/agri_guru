@@ -17,12 +17,12 @@ class _DiseaseknowledgeState extends State<Diseaseknowledge> {
   File? selectedImage;
 
  final List<String> texts = [
-    "Hello!",
-    "Welcome back!",
-    "Good day!",
-    "Flutter is fun!",
-    "Keep coding!",
-    "You're doing great!",
+    "Plant disease-resistant cultivars. If the fungus is prevalent, remove infected leaves or entire plants. Avoid overhead watering and irrigating plants in the evening. Rotate edible crops every year and avoid crowding plants.",
+    "Viral infections have no efficient control, but some resistant varieties exist. Remove infected plants immediately to prevent disease spread. The mosaic virus can survive in the soil for some period. ",
+    "Give plants proper drainage and avoid planting in areas with poor air circulation and ample shade. Additionally, you can spray plants with a solution of baking soda and water. If fungus becomes established, remove infected leaves from plants to stop the spores from spreading. Commercial fungicides to treat powdery mildew are also available. For complete plant protection",
+    "Plant resistant varieties in well-draining soil. The fungus spores overwinter in fallen leaves, so remove dead and infected leaves around the plants. Don't add them to the compost pile. Spray copper or sulfur-based fungicide in spring and early summer",
+    "Plant disease-resistant cultivars. Once the disease infects a plant, there's no effective treatment. Remove and destroy affected plants immediately, and don't plant the same variety in that area for five years.",
+    "Prevention and good sanitation practices will help control this fungal disease because fungicides are not very effective, and there is no cure for an infected plant. Remove and destroy dead plants, including the infected roots and soil, and replant disease-resistant species. Avoid flooding or underwatering on mature trees. Furthermore",
   ];
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,22 @@ class _DiseaseknowledgeState extends State<Diseaseknowledge> {
                             height: 20,
                           ),
                           selectedImage != null
-                              ? Text(getRandomText().toString())
+                              ? Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black38,
+                                      blurRadius: 5,
+                                    )
+                                  ]
+                                ),
+                                child: Text(getRandomText().toString(),style: TextStyle(
+                                  fontFamily: "Body",
+                                  fontWeight: FontWeight.w600,
+                                ),),
+                              )
                               : Text("please select an image"),
                         ],
                       ),
