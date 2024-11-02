@@ -1,4 +1,5 @@
 import 'package:agri_guru/layout/homeLayout/home_layout.dart';
+import 'package:agri_guru/modules/diseaseknowledge/disease_knowledge.dart';
 import 'package:agri_guru/modules/forgetPassword/forget_password.dart';
 import 'package:agri_guru/modules/home/home.dart';
 import 'package:agri_guru/modules/register/register.dart';
@@ -174,7 +175,7 @@ class _LoginState extends State<Login> {
                         buildButton(
                           textBtn: "Log in",
                           onPress: () =>
-                              navigateAndFinish(context, const Home()),
+                              navigateAndFinish(context, const Diseaseknowledge()),
                         ),
                         const SizedBox(
                           height: 20,

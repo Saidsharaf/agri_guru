@@ -1,11 +1,75 @@
+import 'package:agri_guru/models/card.dart';
+import 'package:agri_guru/models/cardModel.dart';
+import 'package:agri_guru/modules/home/sensors/hottest.dart';
+import 'package:agri_guru/modules/home/sensors/newSensors.dart';
+import 'package:agri_guru/modules/home/sensors/popular.dart';
 import 'package:agri_guru/shared/component/component.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  final List<Widget> tabs = [
+    Tab(
+      child: Text("Hottest"),
+      // icon: Icon(
+      //   Icons.fireplace_rounded,
+      //   color:  Color.fromARGB(255, 88, 211, 184),
+      // ),
+    ),
+    Tab(
+      child: Text("Popular"),
+      // icon: Icon(
+      //   Icons.workspaces_filled,
+      //   color:  Color.fromARGB(255, 88, 211, 184),
+      // ),
+    ),
+    Tab(
+      child: Text("NewSensor"),
+      // icon: Icon(
+      //   Icons.auto_awesome_mosaic_rounded,
+      //   color:  Color.fromARGB(255, 88, 211, 184),
+      // ),
+    ),
+  ];
+
+  //pages
+  final List<Widget> tabBarViews = [
+    //posts
+    Hottest(),
+
+    // footprint
+    Popular(),
+
+    //savedpost
+    NewSensors(),
+  ];
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: tabs.length, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
+    
+    List<CardModel> sensors = [
+      CardModel(nameSensor: "Temperature", imgSensor: "assets/images/sensor1.png"),
+      CardModel(nameSensor: "Temperature", imgSensor: "assets/images/sensor2.png"),
+      CardModel(nameSensor: "Temperature", imgSensor: "assets/images/sensor3.png"),
+      CardModel(nameSensor: "Temperature", imgSensor: "assets/images/sensor4.png"),
+    ];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -26,142 +90,86 @@ class Home extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                  color: Colors.black,
-                ),
-                children: [
-                  TextSpan(text: 'Hello Kante, '),
-                  TextSpan(
-                    text: 'Which sensor do you want today ?',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Reg",
-                    ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              RichText(
+                text: TextSpan(
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black,
                   ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            buildTextField(
-              text: "Search for new sensors",
-              icon: Icons.search,
-              onPressed: () {},
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text("Recommended Sensors",style: TextStyle(
-              fontFamily: "Body",
-              fontWeight: FontWeight.w300,
-              fontSize: 15
-            ),),
-            SizedBox(
-              height: 15,
-            ),
-            SizedBox(
-              height: 200,
-              child: ListView.separated(
-                separatorBuilder: (context, index) => SizedBox(
-                  width: 7,
+                  children: [
+                    TextSpan(text: 'Hello Kante, '),
+                    TextSpan(
+                      text: 'Which sensor do you want today ?',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Reg",
+                      ),
+                    ),
+                  ],
                 ),
-                itemBuilder: (context, index) => SensorCard(),
-                itemCount: 3,
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
               ),
-            )
-          ],
+              SizedBox(
+                height: 15,
+              ),
+              buildTextField(
+                text: "Search for new sensors",
+                icon: Icons.search,
+                onPressed: () {},
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                "Recommended Sensors",
+                style: TextStyle(
+                    fontFamily: "Body",
+                    fontWeight: FontWeight.w300,
+                    fontSize: 15),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              SizedBox(
+                height: 200,
+                child: ListView.separated(
+                  separatorBuilder: (context, index) => SizedBox(
+                    width: 7,
+                  ),
+                  itemBuilder: (context, index) => SensorCard(
+                      CardModel(nameSensor: sensors[index].nameSensor, imgSensor: sensors[index].imgSensor,)),
+                  itemCount: sensors.length,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                ),
+              ),
+              Container(
+                height: 300,
+                child: Column(
+                  children: [
+                    TabBar(
+                      controller: _tabController,
+                      tabs: tabs,
+                      labelColor: Color.fromARGB(255, 88, 211, 184),
+                      indicatorColor: Color.fromARGB(255, 3, 134, 117),
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: tabBarViews,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    );
-  }
-}
-
-class SensorCard extends StatelessWidget {
-  const SensorCard({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topRight,
-      children: [
-        
-        Padding(
-          padding: const EdgeInsets.only(top: 5,left: 3,),
-          child: Container(
-            height: 160,
-            width: 150,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 2,
-                //  offset: Offset(5, 2),
-          
-                //  blurStyle: BlurStyle.solid,
-                ),
-              ],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(11.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/images/sensor1.png",
-                    height: 70,
-                  ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    "Temperature sensor ",
-                    style: TextStyle(fontFamily: "Body", fontSize: 12),
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.attach_money_rounded,
-                      ),
-                      Text(
-                        "10",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontFamily: "Body"),
-                      ),
-                      Spacer(),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.add),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.favorite_outline,
-            color: Color.fromARGB(255, 88, 211, 184),
-          ),
-        ),
-      ],
     );
   }
 }
