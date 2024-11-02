@@ -1,11 +1,10 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:agri_guru/shared/component/component.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:camera/camera.dart';
-
 
 class Diseaseknowledge extends StatefulWidget {
   const Diseaseknowledge({super.key});
@@ -16,23 +15,30 @@ class Diseaseknowledge extends StatefulWidget {
 
 class _DiseaseknowledgeState extends State<Diseaseknowledge> {
   File? selectedImage;
-  bool ssa = true;
-    // selectedImage != null
-    //             ? Image.file(selectedImage!)
-    //             : Text("please select an image"),
+
+ final List<String> texts = [
+    "Hello!",
+    "Welcome back!",
+    "Good day!",
+    "Flutter is fun!",
+    "Keep coding!",
+    "You're doing great!",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fitWidth,
               alignment: Alignment.topRight,
-              image:selectedImage != null?FileImage(selectedImage!): AssetImage(
-                "assets/images/launch.png",
-              ),
+              image: selectedImage != null
+                  ? FileImage(selectedImage!)
+                  : AssetImage(
+                      "assets/images/launch.png",
+                    ),
             ),
           ),
           child: Column(
@@ -49,7 +55,8 @@ class _DiseaseknowledgeState extends State<Diseaseknowledge> {
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30))),
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 20, left: 15, right: 15),
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
                       child: Column(
@@ -64,7 +71,9 @@ class _DiseaseknowledgeState extends State<Diseaseknowledge> {
                               pickImageFromGallary();
                             },
                           ),
-                          SizedBox(height: 10,),
+                          SizedBox(
+                            height: 10,
+                          ),
                           buildButton(
                             textBtn: "Upload photo from camera",
                             onPress: () {
@@ -74,6 +83,9 @@ class _DiseaseknowledgeState extends State<Diseaseknowledge> {
                           const SizedBox(
                             height: 20,
                           ),
+                          selectedImage != null
+                              ? Text(getRandomText().toString())
+                              : Text("please select an image"),
                         ],
                       ),
                     ),
@@ -95,8 +107,8 @@ class _DiseaseknowledgeState extends State<Diseaseknowledge> {
       selectedImage = File(returnImage.path);
     });
   }
-  
-Future<void> pickImageFromCamera() async {
+
+  Future<void> pickImageFromCamera() async {
     try {
       final isCameraAvailable = await availableCameras();
       if (isCameraAvailable.isEmpty) {
@@ -106,7 +118,8 @@ Future<void> pickImageFromCamera() async {
         return;
       }
 
-      final returnImage = await ImagePicker().pickImage(source: ImageSource.camera);
+      final returnImage =
+          await ImagePicker().pickImage(source: ImageSource.camera);
       if (returnImage == null) return;
       setState(() {
         selectedImage = File(returnImage.path);
@@ -116,5 +129,11 @@ Future<void> pickImageFromCamera() async {
         SnackBar(content: Text("Failed to access camera: $e")),
       );
     }
+  }
+
+  String getRandomText() {
+    final random = Random();
+    int index = random.nextInt(texts.length); // Generate a random index.
+    return texts[index]; // Return the text at the random index.
   }
 }
