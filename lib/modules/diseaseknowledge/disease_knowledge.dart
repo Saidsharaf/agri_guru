@@ -26,92 +26,88 @@ class _DiseaseknowledgeState extends State<Diseaseknowledge> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.fitWidth,
-              alignment: Alignment.topRight,
-              image: selectedImage != null
-                  ? FileImage(selectedImage!)
-                  : AssetImage(
-                      "assets/images/launch.png",
-                    ),
-            ),
+    return  Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.topRight,
+            image: selectedImage != null
+                ? FileImage(selectedImage!)
+                : AssetImage(
+                    "assets/images/launch.png",
+                  ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.49,
-              ),
-              Expanded(
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30))),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 20, left: 15, right: 15),
-                    child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          /* ______________________________________________________________________________-------*/
-                          buildButton(
-                            textBtn: "Upload photo from gallary",
-                            onPress: () {
-                              pickImageFromGallary();
-                            },
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          buildButton(
-                            textBtn: "Upload photo from camera",
-                            onPress: () {
-                              pickImageFromCamera();
-                            },
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          selectedImage != null
-                              ? Container(
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black38,
-                                      blurRadius: 5,
-                                    )
-                                  ]
-                                ),
-                                child: Text(getRandomText().toString(),style: TextStyle(
-                                  fontFamily: "Body",
-                                  fontWeight: FontWeight.w600,
-                                ),),
-                              )
-                              : Text("please select an image"),
-                        ],
-                      ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.49,
+            ),
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30))),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(top: 20, left: 15, right: 15),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        /* ______________________________________________________________________________-------*/
+                        buildButton(
+                          textBtn: "Upload photo from gallary",
+                          onPress: () {
+                            pickImageFromGallary();
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        buildButton(
+                          textBtn: "Upload photo from camera",
+                          onPress: () {
+                            pickImageFromCamera();
+                          },
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        selectedImage != null
+                            ? Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black38,
+                                    blurRadius: 5,
+                                  )
+                                ]
+                              ),
+                              child: Text(getRandomText().toString(),style: TextStyle(
+                                fontFamily: "Body",
+                                fontWeight: FontWeight.w600,
+                              ),),
+                            )
+                            : Text("please select an image"),
+                      ],
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ),
-    );
+      );
   }
 
   Future pickImageFromGallary() async {

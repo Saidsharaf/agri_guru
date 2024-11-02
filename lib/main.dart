@@ -1,3 +1,4 @@
+import 'package:agri_guru/layout/homeLayout/home_layout.dart';
 import 'package:agri_guru/modules/login/login.dart';
 import 'package:agri_guru/modules/onBoarding/onBoarding.dart';
 import 'package:agri_guru/shared/network/local/sharedPref.dart';
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromARGB(255, 88, 211, 184),
         cardColor: Color.fromARGB(255, 88, 211, 184),
       ),
-      home:sharedPref.getData(key: "onBoarding")==true? Login():OnBoarding(),
+      home:sharedPref.getData(key: "onBoarding")==true? HomeLayout():OnBoarding(),
     );
   }
 }

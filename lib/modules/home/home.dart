@@ -72,24 +72,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     ];
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        actions: [
-          Image.asset(
-            "assets/images/basket.png",
-            width: 23,
-          ),
-          SizedBox(
-            width: 20,
-          ),
-        ],
-        leading: Icon(
-          Icons.menu,
-        ),
-      ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.only(left: 20,right: 20, top: 5),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
