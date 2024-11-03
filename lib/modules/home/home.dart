@@ -1,3 +1,5 @@
+import 'package:agri_guru/layout/homeLayout/cubit.dart';
+import 'package:agri_guru/layout/homeLayout/states.dart';
 import 'package:agri_guru/models/card.dart';
 import 'package:agri_guru/models/cardModel.dart';
 import 'package:agri_guru/modules/home/sensors/hottest.dart';
@@ -5,6 +7,7 @@ import 'package:agri_guru/modules/home/sensors/newSensors.dart';
 import 'package:agri_guru/modules/home/sensors/popular.dart';
 import 'package:agri_guru/shared/component/component.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -61,19 +64,25 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     _tabController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    
     List<CardModel> sensors = [
-      CardModel(nameSensor: "Temperature", imgSensor: "assets/images/sensor1.png"),
-      CardModel(nameSensor: "Temperature", imgSensor: "assets/images/sensor2.png"),
-      CardModel(nameSensor: "Temperature", imgSensor: "assets/images/sensor3.png"),
-      CardModel(nameSensor: "Temperature", imgSensor: "assets/images/sensor4.png"),
+      CardModel(
+        nameSensor: "Temperature",
+        imgSensor: "assets/images/sensor1.png",
+      ),
+      CardModel(
+          nameSensor: "Temperature", imgSensor: "assets/images/sensor2.png"),
+      CardModel(
+          nameSensor: "Temperature", imgSensor: "assets/images/sensor3.png"),
+      CardModel(
+          nameSensor: "Temperature", imgSensor: "assets/images/sensor4.png"),
     ];
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.only(left: 20,right: 20, top: 5),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,8 +133,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   separatorBuilder: (context, index) => SizedBox(
                     width: 7,
                   ),
-                  itemBuilder: (context, index) => SensorCard(
-                      CardModel(nameSensor: sensors[index].nameSensor, imgSensor: sensors[index].imgSensor,)),
+                  itemBuilder: (context, index) {
+                    return BlocBuilder<AppCubit,AppStates>(
+                      builder: (context, state) {
+                      return  SensorCard(
+                    CardModel(
+                      nameSensor: sensors[index].nameSensor,
+                      imgSensor: sensors[index].imgSensor,
+                    ),
+                    
+                  );
+                      },
+                    );
+                  } ,
                   itemCount: sensors.length,
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,

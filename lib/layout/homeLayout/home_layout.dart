@@ -1,5 +1,7 @@
 import 'package:agri_guru/layout/homeLayout/cubit.dart';
 import 'package:agri_guru/layout/homeLayout/states.dart';
+import 'package:agri_guru/modules/myBasket/basket.dart';
+import 'package:agri_guru/shared/component/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,21 +18,26 @@ class HomeLayout extends StatelessWidget {
           var cubit = AppCubit.get(context);
           return Scaffold(
             appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        actions: [
-          Image.asset(
-            "assets/images/basket.png",
-            width: 23,
-          ),
-          SizedBox(
-            width: 20,
-          ),
-        ],
-        leading: Icon(
-          Icons.menu,
-        ),
-      ),
+              backgroundColor: Colors.white,
+              elevation: 0,
+              actions: [
+                InkWell(
+                  onTap: () {
+                    navigate(context, MyBasket());
+                  },
+                  child: Image.asset(
+                    "assets/images/basket.png",
+                    width: 23,
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+              ],
+              leading: Icon(
+                Icons.menu,
+              ),
+            ),
             body: cubit.Screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
               items: cubit.bottomItems,

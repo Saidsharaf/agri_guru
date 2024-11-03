@@ -1,7 +1,5 @@
-import 'package:agri_guru/layout/homeLayout/home_layout.dart';
 import 'package:agri_guru/modules/diseaseknowledge/disease_knowledge.dart';
 import 'package:agri_guru/modules/forgetPassword/forget_password.dart';
-import 'package:agri_guru/modules/home/home.dart';
 import 'package:agri_guru/modules/register/register.dart';
 import 'package:agri_guru/shared/component/component.dart';
 import 'package:flutter/material.dart';

@@ -13,20 +13,23 @@ void navigate(context, Widget) => Navigator.push(
       MaterialPageRoute(builder: (context) => Widget),
     );
 
-Widget buildTextField({
-  @required String? text,
-  bool isSecure = false,
-  TextInputType? type,
-  IconData? icon,
-  Border? border,
-  void Function()? onPressed
-
-}) {
+Widget buildTextField(
+    {@required String? text,
+    bool isSecure = false,
+    TextInputType? type,
+    IconData? icon,
+    Border? border,
+    void Function()? onPressed}) {
   return TextField(
     obscureText: isSecure,
     keyboardType: type,
     decoration: InputDecoration(
-      suffixIcon: IconButton(onPressed:onPressed,icon: Icon(icon,color: Colors.grey,)),
+      suffixIcon: IconButton(
+          onPressed: onPressed,
+          icon: Icon(
+            icon,
+            color: Colors.grey,
+          )),
       fillColor: Colors.grey[300],
       hintText: text,
       hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
@@ -123,6 +126,7 @@ void bottomSheet(BuildContext context) {
   showModalBottomSheet<void>(
     context: context,
     builder: (BuildContext context) {
+      var controller = TextEditingController();
       return Container(
         height: 450,
         color: Colors.grey[300],
@@ -152,9 +156,11 @@ void bottomSheet(BuildContext context) {
                 height: 20,
               ),
               defultFormField(
-                  lable: "Email",
-                  prefix: Icons.email,
-                  type: TextInputType.emailAddress),
+                lable: "Email",
+                prefix: Icons.email,
+                type: TextInputType.emailAddress,
+                controller: controller,
+              ),
               SizedBox(
                 height: 20,
               ),
@@ -171,19 +177,20 @@ void bottomSheet(BuildContext context) {
     },
   );
 }
+
 void showToast({
   @required String? msg,
   @required toastStates? state,
 }) {
   Fluttertoast.showToast(
-      msg: msg!,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 5,
-      backgroundColor: chooseToastColor(state!),
-      textColor: Colors.white,
-      fontSize: 13.0,
-      );
+    msg: msg!,
+    toastLength: Toast.LENGTH_LONG,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 5,
+    backgroundColor: chooseToastColor(state!),
+    textColor: Colors.white,
+    fontSize: 13.0,
+  );
 }
 
 enum toastStates { SUCCESS, WARNING, ERROR }

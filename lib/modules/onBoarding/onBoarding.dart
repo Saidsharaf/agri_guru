@@ -7,7 +7,6 @@ import 'package:agri_guru/modules/onBoarding/intro_page5.dart';
 import 'package:agri_guru/shared/component/component.dart';
 import 'package:agri_guru/shared/network/local/sharedPref.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {

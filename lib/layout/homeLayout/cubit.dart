@@ -1,10 +1,10 @@
 import 'package:agri_guru/layout/homeLayout/states.dart';
+import 'package:agri_guru/modules/delivery/delivery.dart';
 import 'package:agri_guru/modules/diseaseknowledge/disease_knowledge.dart';
 import 'package:agri_guru/modules/home/home.dart';
 import 'package:agri_guru/modules/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(NewsInitialState());
@@ -21,6 +21,10 @@ class AppCubit extends Cubit<AppStates> {
       label: "Recognize",
     ),
     BottomNavigationBarItem(
+      icon: Icon(Icons.delivery_dining_outlined),
+      label: "Delivery",
+    ),
+    BottomNavigationBarItem(
       icon: Icon(Icons.settings),
       label: "Settings",
     ),
@@ -29,10 +33,17 @@ class AppCubit extends Cubit<AppStates> {
   List<Widget> Screens = [
     Home(),
     Diseaseknowledge(),
+    Delivery(),
     Settings(),
   ];
   void changeNavBar(int index) {
     currentIndex = index;
     emit(NewsBottomNavState());
+  }
+
+  bool isFav = false;
+  void changeIsFav() {
+    isFav = !isFav;
+    emit(isFavState());
   }
 }
