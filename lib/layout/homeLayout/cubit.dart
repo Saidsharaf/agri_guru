@@ -1,4 +1,5 @@
 import 'package:agri_guru/layout/homeLayout/states.dart';
+import 'package:agri_guru/models/cardModel.dart';
 import 'package:agri_guru/modules/delivery/delivery.dart';
 import 'package:agri_guru/modules/diseaseknowledge/disease_knowledge.dart';
 import 'package:agri_guru/modules/home/home.dart';
@@ -42,8 +43,27 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   bool isFav = false;
+  
   void changeIsFav() {
     isFav = !isFav;
     emit(isFavState());
   }
+
+    void toggleFavorite(int index) {
+    sensors[index].isFav = !sensors[index].isFav;
+    emit(isFavState()); // Emit a new state
+  }
+  List<CardModel> sensors = [
+    CardModel(nameSensor: "Temperature", imgSensor: "assets/images/sensor1.png", isFav: false),
+    CardModel(nameSensor: "Humidity", imgSensor: "assets/images/sensor2.png", isFav: false),
+    CardModel(nameSensor: "Soil Moisture", imgSensor: "assets/images/sensor3.png", isFav: false),
+    CardModel(nameSensor: "Light", imgSensor: "assets/images/sensor4.png", isFav: false),
+  ];
+  List<CardModel> Hottest = [
+    CardModel(nameSensor: "Temperature", imgSensor: "assets/images/sensor1.png", isFav: false),
+    CardModel(nameSensor: "Humidity", imgSensor: "assets/images/sensor2.png", isFav: false),
+    CardModel(nameSensor: "Soil Moisture", imgSensor: "assets/images/sensor3.png", isFav: false),
+    CardModel(nameSensor: "Light", imgSensor: "assets/images/sensor4.png", isFav: false),
+  ];
+
 }

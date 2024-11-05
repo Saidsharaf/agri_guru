@@ -73,11 +73,17 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         imgSensor: "assets/images/sensor1.png",
       ),
       CardModel(
-          nameSensor: "Temperature", imgSensor: "assets/images/sensor2.png"),
+        nameSensor: "Humidity",
+        imgSensor: "assets/images/sensor2.png",
+      ),
       CardModel(
-          nameSensor: "Temperature", imgSensor: "assets/images/sensor3.png"),
+        nameSensor: "Soil moisture",
+        imgSensor: "assets/images/sensor3.png",
+      ),
       CardModel(
-          nameSensor: "Temperature", imgSensor: "assets/images/sensor4.png"),
+        nameSensor: "Gas sensor",
+        imgSensor: "assets/images/sensor4.png",
+      ),
     ];
     return Scaffold(
       backgroundColor: Colors.white,
@@ -134,18 +140,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     width: 7,
                   ),
                   itemBuilder: (context, index) {
-                    return BlocBuilder<AppCubit,AppStates>(
+                    return BlocBuilder<AppCubit, AppStates>(
                       builder: (context, state) {
-                      return  SensorCard(
-                    CardModel(
-                      nameSensor: sensors[index].nameSensor,
-                      imgSensor: sensors[index].imgSensor,
-                    ),
-                    
-                  );
+                        return SensorCard(
+                          model: CardModel(
+                              nameSensor: sensors[index].nameSensor,
+                              imgSensor: sensors[index].imgSensor,
+                              isFav: context.read<AppCubit>().sensors[index].isFav
+                              ),
+                              index: index,
+                        );
                       },
                     );
-                  } ,
+                  },
                   itemCount: sensors.length,
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,

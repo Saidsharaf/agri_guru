@@ -1,6 +1,8 @@
 class CardModel {
   final String nameSensor;
   final String imgSensor;
+  bool isFav;
+
     
-  const CardModel({required this.nameSensor, required this.imgSensor});
+   CardModel({required this.nameSensor, required this.imgSensor, this.isFav=false});
 }
