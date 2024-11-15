@@ -106,7 +106,9 @@
   "msgSendCode": "code send successfully",
   "msgSendCodeWrong": "Something went wrong, write the code again!",
   "verificationPassword": "Verification Password",
-  "msgVerificationPassword": "We have sent a code to your email"
+  "msgVerificationPassword": "We have sent a code to your email",
+
+    "myName": "wael saad"
   
 
 

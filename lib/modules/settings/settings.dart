@@ -1,18 +1,23 @@
+import 'package:agri_guru/main.dart';
 import 'package:agri_guru/modules/login/login.dart';
 import 'package:agri_guru/shared/component/component.dart';
+import 'package:agri_guru/shared/network/local/sharedPref.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class Settings extends StatefulWidget {
-  const Settings({super.key});
+  final Widget startWidget;
+  const Settings({super.key, required this.startWidget});
 
   @override
   State<Settings> createState() => _SettingsState();
 }
 
 class _SettingsState extends State<Settings> {
+    bool isAr = sharedPref.getData(key: "lang") == "ar"; 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +41,7 @@ class _SettingsState extends State<Settings> {
                   margin: EdgeInsets.only(
                     top: 90,
                   ),
-                  height: 150,
+                  height: 170,
                   width: 288,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -64,7 +69,7 @@ class _SettingsState extends State<Settings> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        AppLocalizations.of(context)!.deliveryName,
+                        AppLocalizations.of(context)!.myName,
                         style: TextStyle(
                           fontFamily: "Body",
                           fontSize: 18,
@@ -74,7 +79,7 @@ class _SettingsState extends State<Settings> {
                       GestureDetector(
                         onTap: () {},
                         child: Container(
-                          width: 150,
+                          width: 200,
                           decoration: BoxDecoration(
                               //color:  Color.fromARGB(255, 88, 211, 184),
                               borderRadius: BorderRadius.circular(5),
@@ -117,7 +122,26 @@ class _SettingsState extends State<Settings> {
                     SettingsTile(
                       title: Text(AppLocalizations.of(context)!.language),
                       leading: Icon(Icons.language),
-                      onPressed: (BuildContext context) {},
+                      onPressed: (BuildContext context) {
+                        setState(() {
+                          isAr = !isAr;
+                          String newLang = isAr ? "ar" : "en";
+                          sharedPref.saveData(key: "lang", value: newLang);
+
+                          // Rebuild MyApp with the new locale
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyApp(
+                                locale: Locale(newLang),
+                                startWidget: widget.startWidget,
+                              ),
+                            ),
+                            (route) => false,
+                          );
+                          print(newLang);
+                        });
+                      },
                     ),
                     SettingsTile.switchTile(
                       initialValue: true,

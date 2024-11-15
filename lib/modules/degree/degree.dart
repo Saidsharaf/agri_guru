@@ -79,7 +79,7 @@ class _DegreeState extends State<Degree> with SingleTickerProviderStateMixin {
                 Container(
                   color: Colors.white,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius:
@@ -88,7 +88,7 @@ class _DegreeState extends State<Degree> with SingleTickerProviderStateMixin {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       crossAxisCount: 2,
-                      crossAxisSpacing: 40,
+                      crossAxisSpacing: 25,
                       mainAxisSpacing: 30,
                       children: [
                         itemDashboard(

@@ -2,9 +2,9 @@ import 'package:agri_guru/layout/homeLayout/home_layout.dart';
 import 'package:agri_guru/modules/forgetPassword/forget_password.dart';
 import 'package:agri_guru/modules/register/register.dart';
 import 'package:agri_guru/shared/component/component.dart';
+import 'package:agri_guru/shared/network/local/sharedPref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -40,7 +40,7 @@ class _LoginState extends State<Login> {
             const SizedBox(
               height: 70,
             ),
-             Padding(
+            Padding(
               padding: EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,7 +89,7 @@ class _LoginState extends State<Login> {
                               children: [
                                 Container(
                                   padding: const EdgeInsets.only(left: 10),
-                                  child:  Text(
+                                  child: Text(
                                     AppLocalizations.of(context)!.email,
                                     style: TextStyle(
                                         fontFamily: "Body",
@@ -107,11 +107,13 @@ class _LoginState extends State<Login> {
                                     text: "example@gmail.com",
                                     type: TextInputType.emailAddress,
                                     validate: (value) {
-                                      if (value!.isEmpty
-                                          ) {
-                                        return AppLocalizations.of(context)!.msgEmptyEmail;
-                                      }else if(emailController.text != "admin1@gmail.com"){
-                                        return AppLocalizations.of(context)!.msgValidEmail;
+                                      if (value!.isEmpty) {
+                                        return AppLocalizations.of(context)!
+                                            .msgEmptyEmail;
+                                      } else if (emailController.text !=
+                                          "admin1@gmail.com") {
+                                        return AppLocalizations.of(context)!
+                                            .msgValidEmail;
                                       }
                                       return null;
                                     },
@@ -119,7 +121,7 @@ class _LoginState extends State<Login> {
                                 ),
                                 Container(
                                   padding: const EdgeInsets.only(left: 10),
-                                  child:  Text(
+                                  child: Text(
                                     AppLocalizations.of(context)!.password,
                                     style: TextStyle(
                                         fontFamily: "Body",
@@ -147,7 +149,8 @@ class _LoginState extends State<Login> {
                                     },
                                     validate: (value) {
                                       if (value!.isEmpty) {
-                                        return AppLocalizations.of(context)!.msgEmptyPassword;
+                                        return AppLocalizations.of(context)!
+                                            .msgEmptyPassword;
                                       }
                                       return null;
                                     },
@@ -170,7 +173,7 @@ class _LoginState extends State<Login> {
                                 },
                                 value: checkBoxValue,
                               ),
-                               Text(
+                              Text(
                                 AppLocalizations.of(context)!.remember,
                                 style: TextStyle(
                                   color: Colors.grey,
@@ -206,8 +209,13 @@ class _LoginState extends State<Login> {
                               textBtn: AppLocalizations.of(context)!.logInBtn,
                               onPress: () {
                                 if (formKey.currentState!.validate()) {
-                                  navigateAndFinish(
+                                  sharedPref
+                                      .saveData(key: "token", value: true)
+                                      .then((value) {
+                                        navigateAndFinish(
                                       context, const HomeLayout());
+                                      });
+                                  
                                 }
                               }),
                           const SizedBox(
@@ -216,7 +224,7 @@ class _LoginState extends State<Login> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                               Text(
+                              Text(
                                 AppLocalizations.of(context)!.doNot,
                                 style: TextStyle(
                                     fontFamily: "Body",
@@ -227,7 +235,7 @@ class _LoginState extends State<Login> {
                                 onTap: () {
                                   navigate(context, const Register());
                                 },
-                                child:  Text(
+                                child: Text(
                                   AppLocalizations.of(context)!.signUp,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
@@ -248,7 +256,7 @@ class _LoginState extends State<Login> {
                                 width: MediaQuery.sizeOf(context).width / 4,
                                 color: Colors.grey[300],
                               ),
-                               Text(
+                              Text(
                                 AppLocalizations.of(context)!.or,
                                 style: TextStyle(
                                     fontFamily: "Body",

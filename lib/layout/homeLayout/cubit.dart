@@ -1,3 +1,4 @@
+import 'package:agri_guru/layout/homeLayout/home_layout.dart';
 import 'package:agri_guru/layout/homeLayout/states.dart';
 import 'package:agri_guru/models/cardModel.dart';
 import 'package:agri_guru/modules/degree/degree.dart';
@@ -47,7 +48,7 @@ class AppCubit extends Cubit<AppStates> {
     Diseaseknowledge(),
     Degree(),
     Delivery(),
-    Settings(),
+    Settings(startWidget: HomeLayout(),),
   ];
 
   void changeNavBar(int index) {
