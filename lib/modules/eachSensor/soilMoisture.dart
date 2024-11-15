@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
-class Temperature extends StatelessWidget {
-  const Temperature({super.key});
+class SoilMoisture extends StatelessWidget {
+  const SoilMoisture({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class Temperature extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 88, 211, 184),
               ),
-              child: Center(child: Image.asset("assets/images/sensor1.png")),
+              child: Center(child: Image.asset("assets/images/sensor3.png")),
             ),
           ),
           Expanded(
@@ -31,7 +31,7 @@ class Temperature extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.temperature,
+                      AppLocalizations.of(context)!.soilMoisture,
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
@@ -51,7 +51,7 @@ class Temperature extends StatelessWidget {
                       height: 20,
                     ),
                     buildButton(
-                      textBtn: AppLocalizations.of(context)!.continueMsg,
+                      textBtn:AppLocalizations.of(context)!.continueMsg,
                       onPress: () {
                         navigate(context, Payment());
                       },

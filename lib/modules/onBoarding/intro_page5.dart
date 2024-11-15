@@ -7,7 +7,7 @@ class IntroPage5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(213, 9, 114, 41),
+      color:Color.fromARGB(255, 88, 211, 184),
       //Color.fromARGB(213, 9, 114, 41),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

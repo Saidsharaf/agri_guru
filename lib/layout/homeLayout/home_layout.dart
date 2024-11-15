@@ -38,9 +38,9 @@ class HomeLayout extends StatelessWidget {
                 Icons.menu,
               ),
             ),
-            body: cubit.Screens[cubit.currentIndex],
+            body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
-              items: cubit.bottomItems,
+              items: cubit.getBottomItems(context),
               currentIndex: cubit.currentIndex,
               onTap: (index) {
                 cubit.changeNavBar(index);

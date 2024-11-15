@@ -12,7 +12,7 @@ class IntroPage3 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "U can order the Revive machine online from our app",
+            "U can order the Sensors online from our app",
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,

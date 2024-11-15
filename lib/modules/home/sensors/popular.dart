@@ -4,6 +4,8 @@ import 'package:agri_guru/models/card.dart';
 import 'package:agri_guru/models/cardModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class Popular extends StatelessWidget {
   const Popular({super.key});
@@ -12,19 +14,19 @@ class Popular extends StatelessWidget {
   Widget build(BuildContext context) {
   List<CardModel> sensors = [
       CardModel(
-        nameSensor: "Temperature",
+        nameSensor: AppLocalizations.of(context)!.temperature,
         imgSensor: "assets/images/sensor1.png",
       ),
       CardModel(
-        nameSensor: "Humidity",
+        nameSensor: AppLocalizations.of(context)!.humidity,
         imgSensor: "assets/images/sensor2.png",
       ),
       CardModel(
-        nameSensor: "Soil moisture",
+        nameSensor: AppLocalizations.of(context)!.soilMoisture,
         imgSensor: "assets/images/sensor3.png",
       ),
       CardModel(
-        nameSensor: "Gas sensor",
+        nameSensor: AppLocalizations.of(context)!.gasSensor,
         imgSensor: "assets/images/sensor4.png",
       ),
     ];

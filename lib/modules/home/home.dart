@@ -8,6 +8,8 @@ import 'package:agri_guru/modules/home/sensors/popular.dart';
 import 'package:agri_guru/shared/component/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,29 +20,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final List<Widget> tabs = [
-    Tab(
-      child: Text("Hottest"),
-      // icon: Icon(
-      //   Icons.fireplace_rounded,
-      //   color:  Color.fromARGB(255, 88, 211, 184),
-      // ),
-    ),
-    Tab(
-      child: Text("Popular"),
-      // icon: Icon(
-      //   Icons.workspaces_filled,
-      //   color:  Color.fromARGB(255, 88, 211, 184),
-      // ),
-    ),
-    Tab(
-      child: Text("NewSensor"),
-      // icon: Icon(
-      //   Icons.auto_awesome_mosaic_rounded,
-      //   color:  Color.fromARGB(255, 88, 211, 184),
-      // ),
-    ),
-  ];
+  var searchController = TextEditingController();
 
   //pages
   final List<Widget> tabBarViews = [
@@ -53,10 +33,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     //savedpost
     NewSensors(),
   ];
+
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: tabs.length, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -67,24 +48,37 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> tabs = [
+      Tab(
+        child: Text(AppLocalizations.of(context)!.hottest, style: TextStyle(fontSize: 13)),
+      ),
+      Tab(
+        child: Text(AppLocalizations.of(context)!.popular, style: TextStyle(fontSize: 12)),
+      ),
+      Tab(
+        child: Text(AppLocalizations.of(context)!.newP, style: TextStyle(fontSize: 13)),
+      ),
+    ];
+
     List<CardModel> sensors = [
       CardModel(
-        nameSensor: "Temperature",
+        nameSensor: AppLocalizations.of(context)!.temperature,
         imgSensor: "assets/images/sensor1.png",
       ),
       CardModel(
-        nameSensor: "Humidity",
+        nameSensor: AppLocalizations.of(context)!.humidity,
         imgSensor: "assets/images/sensor2.png",
       ),
       CardModel(
-        nameSensor: "Soil moisture",
+        nameSensor: AppLocalizations.of(context)!.soilMoisture,
         imgSensor: "assets/images/sensor3.png",
       ),
       CardModel(
-        nameSensor: "Gas sensor",
+        nameSensor: AppLocalizations.of(context)!.gasSensor,
         imgSensor: "assets/images/sensor4.png",
       ),
     ];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -101,9 +95,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     color: Colors.black,
                   ),
                   children: [
-                    TextSpan(text: 'Hello Kante, '),
+                    TextSpan(text: AppLocalizations.of(context)!.topHome),
                     TextSpan(
-                      text: 'Which sensor do you want today ?',
+                      text: AppLocalizations.of(context)!.topHomeN,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: "Reg",
@@ -112,43 +106,37 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 15,
-              ),
+              SizedBox(height: 15),
               buildTextField(
-                text: "Search for new sensors",
+                textEditingController: searchController,
+                text: AppLocalizations.of(context)!.search,
                 icon: Icons.search,
                 onPressed: () {},
               ),
-              SizedBox(
-                height: 15,
-              ),
+              SizedBox(height: 15),
               Text(
-                "Recommended Sensors",
+                AppLocalizations.of(context)!.recommendedSensors,
                 style: TextStyle(
-                    fontFamily: "Body",
-                    fontWeight: FontWeight.w300,
-                    fontSize: 15),
+                  fontFamily: "Body",
+                  fontWeight: FontWeight.w300,
+                  fontSize: 15,
+                ),
               ),
-              SizedBox(
-                height: 15,
-              ),
+              SizedBox(height: 15),
               SizedBox(
                 height: 200,
                 child: ListView.separated(
-                  separatorBuilder: (context, index) => SizedBox(
-                    width: 7,
-                  ),
+                  separatorBuilder: (context, index) => SizedBox(width: 7),
                   itemBuilder: (context, index) {
                     return BlocBuilder<AppCubit, AppStates>(
                       builder: (context, state) {
                         return SensorCard(
                           model: CardModel(
-                              nameSensor: sensors[index].nameSensor,
-                              imgSensor: sensors[index].imgSensor,
-                              isFav: context.read<AppCubit>().sensors[index].isFav
-                              ),
-                              index: index,
+                            nameSensor: sensors[index].nameSensor,
+                            imgSensor: sensors[index].imgSensor,
+                            isFav: context.read<AppCubit>().sensors[index].isFav,
+                          ),
+                          index: index,
                         );
                       },
                     );

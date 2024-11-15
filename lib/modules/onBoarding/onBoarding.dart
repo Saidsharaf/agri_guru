@@ -2,7 +2,6 @@ import 'package:agri_guru/modules/login/login.dart';
 import 'package:agri_guru/modules/onBoarding/intro_page1.dart';
 import 'package:agri_guru/modules/onBoarding/intro_page2.dart';
 import 'package:agri_guru/modules/onBoarding/intro_page3.dart';
-import 'package:agri_guru/modules/onBoarding/intro_page4.dart';
 import 'package:agri_guru/modules/onBoarding/intro_page5.dart';
 import 'package:agri_guru/shared/component/component.dart';
 import 'package:agri_guru/shared/network/local/sharedPref.dart';
@@ -35,7 +34,7 @@ class _onBoardingState extends State<OnBoarding> {
           PageView(
             onPageChanged: (index) {
               setState(() {
-                isLast = (index == 4);
+                isLast = (index == 3);
               });
             },
             controller: boardController,
@@ -43,7 +42,6 @@ class _onBoardingState extends State<OnBoarding> {
               IntroPage1(),
               IntroPage2(),
               IntroPage3(),
-              IntroPage4(),
               IntroPage5(),
             ],
           ),
@@ -68,7 +66,7 @@ class _onBoardingState extends State<OnBoarding> {
                 ),
                 SmoothPageIndicator(
                   controller: boardController,
-                  count: 5,
+                  count: 4,
                   effect: ExpandingDotsEffect(
                     dotColor: Colors.grey,
                     activeDotColor: Color.fromARGB(255, 5, 173, 103),

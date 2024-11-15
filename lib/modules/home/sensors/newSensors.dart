@@ -4,6 +4,8 @@ import 'package:agri_guru/models/card.dart';
 import 'package:agri_guru/models/cardModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class NewSensors extends StatelessWidget {
   const NewSensors({super.key});
@@ -13,15 +15,15 @@ class NewSensors extends StatelessWidget {
   List<CardModel> sensors = [
     
       CardModel(
-        nameSensor: "Humidity",
+        nameSensor: AppLocalizations.of(context)!.humidity,
         imgSensor: "assets/images/sensor2.png",
       ),
       CardModel(
-        nameSensor: "Soil moisture",
+        nameSensor: AppLocalizations.of(context)!.soilMoisture,
         imgSensor: "assets/images/sensor3.png",
       ),
       CardModel(
-        nameSensor: "Gas sensor",
+        nameSensor: AppLocalizations.of(context)!.gasSensor,
         imgSensor: "assets/images/sensor4.png",
       ),
     ];

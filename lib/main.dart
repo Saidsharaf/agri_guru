@@ -1,8 +1,10 @@
-import 'package:agri_guru/layout/homeLayout/home_layout.dart';
+import 'package:agri_guru/modules/login/login.dart';
 import 'package:agri_guru/modules/onBoarding/onBoarding.dart';
 import 'package:agri_guru/shared/network/local/sharedPref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +20,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      locale: Locale("ar"),
+      supportedLocales: [
+        Locale('en'),
+        Locale('ar'),
+      ],
       theme: ThemeData(
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: Color.fromARGB(255, 88, 211, 184),
@@ -54,7 +67,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromARGB(255, 88, 211, 184),
         cardColor: Color.fromARGB(255, 88, 211, 184),
       ),
-      home:sharedPref.getData(key: "onBoarding")==true? HomeLayout():OnBoarding(),
+      home:sharedPref.getData(key: "onBoarding")==true? Login():OnBoarding(),
     );
   }
 }

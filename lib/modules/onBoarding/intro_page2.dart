@@ -12,7 +12,7 @@ class IntroPage2 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "U can know the footprint for you and your factory from our app ",
+            "Make your smart farmer from our app ",
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,

@@ -19,8 +19,12 @@ Widget buildTextField(
     TextInputType? type,
     IconData? icon,
     Border? border,
+    String? Function(String?)? validate,
+    @required TextEditingController? textEditingController,
     void Function()? onPressed}) {
-  return TextField(
+  return TextFormField(
+    validator: validate,
+    controller: textEditingController,
     obscureText: isSecure,
     keyboardType: type,
     decoration: InputDecoration(
@@ -37,9 +41,6 @@ Widget buildTextField(
         borderRadius: BorderRadius.circular(5),
         borderSide: BorderSide.none,
       ),
-      //  border: OutlineInputBorder(
-      //   borderRadius: BorderRadius.circular(5),
-      //  ),
       filled: true,
     ),
   );

@@ -2,6 +2,7 @@ import 'package:agri_guru/modules/login/login.dart';
 import 'package:agri_guru/shared/component/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class VerificationPassword extends StatefulWidget {
   const VerificationPassword({super.key});
@@ -38,13 +39,13 @@ class _VerificationPasswordState extends State<VerificationPassword> {
                 const SizedBox(
                   height: 70,
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(25),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "Verification Password",
+                        AppLocalizations.of(context)!.verificationPassword,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 23,
@@ -52,7 +53,7 @@ class _VerificationPasswordState extends State<VerificationPassword> {
                         ),
                       ),
                       Text(
-                        "We have sent a code to your email",
+                        AppLocalizations.of(context)!.msgVerificationPassword,
                         style: TextStyle(
                           color: Colors.white70,
                           fontSize: 13,
@@ -227,10 +228,10 @@ class _VerificationPasswordState extends State<VerificationPassword> {
                             ),
                             /* ______________________________________________________________________________-------*/
                             buildButton(
-                              textBtn: "Send Code",
+                              textBtn: AppLocalizations.of(context)!.sendCode,
                               onPress: () {
                                 showToast(
-                                  msg: "Something went wrong, write the code again!",
+                                  msg: AppLocalizations.of(context)!.msgSendCodeWrong,
                                   state: toastStates.ERROR,
                                 );
                               

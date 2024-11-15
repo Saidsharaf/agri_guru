@@ -1,5 +1,9 @@
+import 'package:agri_guru/modules/login/login.dart';
+import 'package:agri_guru/shared/component/component.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -60,7 +64,7 @@ class _SettingsState extends State<Settings> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        "said sharaf",
+                        AppLocalizations.of(context)!.deliveryName,
                         style: TextStyle(
                           fontFamily: "Body",
                           fontSize: 18,
@@ -88,7 +92,7 @@ class _SettingsState extends State<Settings> {
                                 width: 5,
                               ),
                               Text(
-                                "Edit profile",
+                                AppLocalizations.of(context)!.editProfile,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: Color.fromARGB(255, 53, 92, 83),
@@ -108,16 +112,16 @@ class _SettingsState extends State<Settings> {
             child: SettingsList(
               sections: [
                 SettingsSection(
-                  title: Text("System"),
+                  title: Text(AppLocalizations.of(context)!.system),
                   tiles: [
                     SettingsTile(
-                      title: Text('Language'),
+                      title: Text(AppLocalizations.of(context)!.language),
                       leading: Icon(Icons.language),
                       onPressed: (BuildContext context) {},
                     ),
                     SettingsTile.switchTile(
                       initialValue: true,
-                      title: Text('Use System Theme'),
+                      title: Text(AppLocalizations.of(context)!.useSystemTheme),
                       leading: Icon(Icons.phone_android),
                       onToggle: (value) {
                         setState(() {
@@ -128,18 +132,30 @@ class _SettingsState extends State<Settings> {
                   ],
                 ),
                 SettingsSection(
-                  title: Text('Security'),
+                  title: Text(AppLocalizations.of(context)!.security),
                   tiles: [
                     SettingsTile(
-                      title: Text('Security'),
+                      title: Text(AppLocalizations.of(context)!.security),
                       leading: Icon(Icons.lock),
                       onPressed: (BuildContext context) {},
                     ),
                     SettingsTile.switchTile(
                       initialValue: true,
-                      title: Text('Use fingerprint'),
+                      title: Text(AppLocalizations.of(context)!.usefingerprint),
                       leading: Icon(Icons.fingerprint),
                       onToggle: (value) {},
+                    ),
+                  ],
+                ),
+                SettingsSection(
+                  title: Text(AppLocalizations.of(context)!.logOut),
+                  tiles: [
+                    SettingsTile(
+                      title: Text(AppLocalizations.of(context)!.logOut),
+                      leading: Icon(Icons.logout_outlined),
+                      onPressed: (BuildContext context) {
+                        navigateAndFinish(context, Login());
+                      },
                     ),
                   ],
                 ),

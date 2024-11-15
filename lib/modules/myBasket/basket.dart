@@ -1,6 +1,8 @@
 import 'package:agri_guru/modules/payment/payment.dart';
 import 'package:agri_guru/shared/component/component.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class MyBasket extends StatelessWidget {
   const MyBasket({super.key});
@@ -9,7 +11,7 @@ class MyBasket extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Basket"),
+        title: Text(AppLocalizations.of(context)!.basket),
         centerTitle: true,
       ),
       body: Padding(
@@ -28,7 +30,7 @@ class MyBasket extends StatelessWidget {
               children: [
                 Image.asset(
                   "assets/images/sensor1.png",
-                  height: 80,
+                  height: 70,
                 ),
                 SizedBox(
                   width: 10,
@@ -37,21 +39,21 @@ class MyBasket extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Temperature",
+                      AppLocalizations.of(context)!.temperature,
                       style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                     ),
                     SizedBox(
                       height: 5,
                     ),
                     Text(
                       "2024-011-10 20:18:04Z",
-                      style: TextStyle(color: Colors.grey, fontSize: 15),
+                      style: TextStyle(color: Colors.grey, fontSize: 10),
                     ),
                   ],
                 ),
                 Spacer(),
-                Expanded(child: Text("70 le")),
+                Expanded(child: Text(AppLocalizations.of(context)!.orderPrice)),
               ],
             ),
           ),

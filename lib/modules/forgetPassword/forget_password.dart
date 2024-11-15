@@ -2,12 +2,16 @@ import 'package:agri_guru/modules/forgetPassword/verification_password.dart';
 import 'package:agri_guru/modules/login/login.dart';
 import 'package:agri_guru/shared/component/component.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var forgetController = TextEditingController();
+    var formKey = GlobalKey<FormState>();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -27,21 +31,21 @@ class ForgetPassword extends StatelessWidget {
                 const SizedBox(
                   height: 70,
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(20),
+                Padding(
+                  padding: EdgeInsets.all(35),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "Forget Password",
+                        AppLocalizations.of(context)!.forgetPassword,
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 23,
+                          fontSize: 20,
                           fontFamily: "Tabela",
                         ),
                       ),
                       Text(
-                        "sign in to your existing account",
+                        AppLocalizations.of(context)!.existAcc,
                         style: TextStyle(
                           color: Colors.white70,
                           fontSize: 13,
@@ -59,7 +63,8 @@ class ForgetPassword extends StatelessWidget {
                             topLeft: Radius.circular(30),
                             topRight: Radius.circular(30))),
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 20,left: 15,right: 15),
+                      padding:
+                          const EdgeInsets.only(top: 20, left: 15, right: 15),
                       child: SingleChildScrollView(
                         physics: const BouncingScrollPhysics(),
                         child: Column(
@@ -69,27 +74,42 @@ class ForgetPassword extends StatelessWidget {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: const Text(
-                                      "EMAIL",
-                                      style: TextStyle(
-                                          fontFamily: "Body",
-                                          fontSize: 14,
-                                          color: Colors.black54),
+                              child: Form(
+                                key: formKey,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        AppLocalizations.of(context)!.email,
+                                        style: TextStyle(
+                                            fontFamily: "Body",
+                                            fontSize: 14,
+                                            color: Colors.black54),
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.all(10),
-                                    child: buildTextField(
-                                      text: "example@gmail.com",
-                                      type: TextInputType.emailAddress,
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      child: buildTextField(
+                                        textEditingController: forgetController,
+                                        validate: (value) {
+                                          if (value!.isEmpty) {
+                                            return AppLocalizations.of(context)!
+                                                .msgEmptyEmail;
+                                          } else if (forgetController.text !=
+                                              "admin1@gmail.com") {
+                                            return AppLocalizations.of(context)!
+                                                .msgValidEmail;
+                                          }
+                                          return null;
+                                        },
+                                        text: "example@gmail.com",
+                                        type: TextInputType.emailAddress,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                             const SizedBox(
@@ -97,13 +117,16 @@ class ForgetPassword extends StatelessWidget {
                             ),
                             /* ______________________________________________________________________________-------*/
                             buildButton(
-                              textBtn: "Send Code",
+                              textBtn: AppLocalizations.of(context)!.sendCode,
                               onPress: () {
-                                showToast(
-                                    msg: "code send successfully",
-                                    state: toastStates.SUCCESS);
-                                navigateAndFinish(
-                                    context, const VerificationPassword());
+                                if (formKey.currentState!.validate()) {
+                                  showToast(
+                                      msg: AppLocalizations.of(context)!
+                                          .msgSendCode,
+                                      state: toastStates.SUCCESS);
+                                  navigateAndFinish(
+                                      context, const VerificationPassword());
+                                }
                               },
                             ),
                             const SizedBox(

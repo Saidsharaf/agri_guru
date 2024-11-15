@@ -1,3 +1,5 @@
+import 'package:agri_guru/layout/homeLayout/home_layout.dart';
+import 'package:agri_guru/shared/component/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
@@ -50,77 +52,96 @@ class _PaymentState extends State<Payment> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 205, 206, 206),
       appBar: AppBar(),
-      body: Column(
-        children: [
-          CreditCardWidget(
-            cardNumber: cardNumController.text,
-            expiryDate: expiredController.text,
-            cardHolderName: holderController.text,
-            cvvCode: cvvController.text,
-            showBackView: false,
-            onCreditCardWidgetChange: (CreditCardBrand brand) {},
-            bankName: 'National Bank of Egypt',
-            cardBgColor: Colors.black87,
-            glassmorphismConfig: Glassmorphism.defaultConfig(),
-            enableFloatingCard: true,
-            floatingConfig: FloatingConfig(
-              isGlareEnabled: true,
-              isShadowEnabled: true,
-              shadowConfig:FloatingShadowConfig(color: Color.fromARGB(255, 76, 182, 159),offset: Offset(0, 0),),
-            ),
-            backgroundImage: 'assets/images/blue2.png',
-            labelValidThru: 'VALID\nTHRU',
-            obscureCardNumber: true,
-            obscureInitialCardNumber: false,
-            obscureCardCvv: true,
-            labelCardHolder: 'CARD HOLDER',
-            cardType: CardType.mastercard,
-            isHolderNameVisible: true,
-            height: 175,
-            textStyle: TextStyle(color: Colors.white),
-            width: MediaQuery.of(context).size.width,
-            isChipVisible: true,
-            isSwipeGestureEnabled: true,
-            animationDuration: Duration(milliseconds: 1000),
-            frontCardBorder: Border.all(color:Color.fromARGB(255, 97, 172, 155)),
-            backCardBorder: Border.all(color: Color.fromARGB(255, 88, 211, 184)),
-            chipColor: Colors.white70,
-            padding: 16,
-            customCardTypeIcons: <CustomCardTypeIcon>[
-              CustomCardTypeIcon(
-                cardType: CardType.mastercard,
-                cardImage: Image.asset(
-                  'assets/images/master2.png',
-                  height: 48,
-                  width: 48,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CreditCardWidget(
+              cardNumber: cardNumController.text,
+              expiryDate: expiredController.text,
+              cardHolderName: holderController.text,
+              cvvCode: cvvController.text,
+              showBackView: false,
+              onCreditCardWidgetChange: (CreditCardBrand brand) {},
+              bankName: 'National Bank of Egypt',
+              cardBgColor: Colors.black87,
+              glassmorphismConfig: Glassmorphism.defaultConfig(),
+              enableFloatingCard: true,
+              floatingConfig: FloatingConfig(
+                isGlareEnabled: true,
+                isShadowEnabled: true,
+                shadowConfig: FloatingShadowConfig(
+                  color: Color.fromARGB(255, 76, 182, 159),
+                  offset: Offset(0, 0),
                 ),
               ),
-            ],
-          ),
-          SizedBox(height: 10),
-          _buildTextField(
-              controller: cardNumController, hint: "Card Number", keyboardType: TextInputType.number),
-          Row(
-            children: [
-              Expanded(
-                child: _buildTextField(
-                    controller: expiredController, hint: "Expiry Date", keyboardType: TextInputType.datetime),
-              ),
-              SizedBox(width: 10),
-              Expanded(
-                child: _buildTextField(controller: cvvController, hint: "CVV", keyboardType: TextInputType.number),
-              ),
-            ],
-          ),
-          _buildTextField(controller: holderController, hint: "Card Holder", keyboardType: TextInputType.name),
-          _buildValidateButton(),
-        ],
+              backgroundImage: 'assets/images/blue2.png',
+              labelValidThru: 'VALID\nTHRU',
+              obscureCardNumber: true,
+              obscureInitialCardNumber: false,
+              obscureCardCvv: true,
+              labelCardHolder: 'CARD HOLDER',
+              cardType: CardType.mastercard,
+              isHolderNameVisible: true,
+              height: 175,
+              textStyle: TextStyle(color: Colors.white),
+              width: MediaQuery.of(context).size.width,
+              isChipVisible: true,
+              isSwipeGestureEnabled: true,
+              animationDuration: Duration(milliseconds: 1000),
+              frontCardBorder:
+                  Border.all(color: Color.fromARGB(255, 97, 172, 155)),
+              backCardBorder:
+                  Border.all(color: Color.fromARGB(255, 88, 211, 184)),
+              chipColor: Colors.white70,
+              padding: 16,
+              customCardTypeIcons: <CustomCardTypeIcon>[
+                CustomCardTypeIcon(
+                  cardType: CardType.mastercard,
+                  cardImage: Image.asset(
+                    'assets/images/master2.png',
+                    height: 48,
+                    width: 48,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            _buildTextField(
+                controller: cardNumController,
+                hint: "Card Number",
+                keyboardType: TextInputType.number),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildTextField(
+                      controller: expiredController,
+                      hint: "Expiry Date",
+                      keyboardType: TextInputType.datetime),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: _buildTextField(
+                      controller: cvvController,
+                      hint: "CVV",
+                      keyboardType: TextInputType.number),
+                ),
+              ],
+            ),
+            _buildTextField(
+                controller: holderController,
+                hint: "Card Holder",
+                keyboardType: TextInputType.name),
+            _buildValidateButton(),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildTextField(
-      {required TextEditingController controller, required String hint, required TextInputType keyboardType}) {
+      {required TextEditingController controller,
+      required String hint,
+      required TextInputType keyboardType}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextFormField(
@@ -142,24 +163,33 @@ class _PaymentState extends State<Payment> {
   Widget _buildValidateButton() {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Container(
-        height: 50,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomLeft,
-            colors: [
-              Color.fromARGB(255, 25, 175, 175),
-              Color.fromARGB(255, 67, 154, 160),
-              Color.fromARGB(255, 25, 175, 175),
-            ],
+      child: GestureDetector(
+        onTap: () {
+          navigate(context, HomeLayout());
+          showToast(msg: "payment done", state: toastStates.SUCCESS);
+        },
+        child: Container(
+          height: 50,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              colors: [
+                Color.fromARGB(255, 25, 175, 175),
+                Color.fromARGB(255, 67, 154, 160),
+                Color.fromARGB(255, 25, 175, 175),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(5),
           ),
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Center(
-          child: Text(
-            "Validate",
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17,color: Colors.white),
+          child: Center(
+            child: Text(
+              "Validate",
+              style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 17,
+                  color: Colors.white),
+            ),
           ),
         ),
       ),
