@@ -15,8 +15,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-    bool isAr = sharedPref.getData(key: "lang") == "ar"; 
-
+  bool isAr = sharedPref.getData(key: "lang") == "ar";
 
   @override
   Widget build(BuildContext context) {
@@ -178,6 +177,7 @@ class _SettingsState extends State<Settings> {
                       title: Text(AppLocalizations.of(context)!.logOut),
                       leading: Icon(Icons.logout_outlined),
                       onPressed: (BuildContext context) {
+                        sharedPref.removeData(key: "token");
                         navigateAndFinish(context, Login());
                       },
                     ),

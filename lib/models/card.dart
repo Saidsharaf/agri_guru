@@ -2,7 +2,7 @@ import 'package:agri_guru/layout/homeLayout/cubit.dart';
 import 'package:agri_guru/layout/homeLayout/states.dart';
 import 'package:agri_guru/models/cardModel.dart';
 import 'package:agri_guru/modules/eachSensor/GasSensor.dart';
-import 'package:agri_guru/modules/eachSensor/humidity.dart';
+import 'package:agri_guru/modules/eachSensor/ldr.dart';
 import 'package:agri_guru/modules/eachSensor/soilMoisture.dart';
 import 'package:agri_guru/modules/eachSensor/temperature.dart';
 import 'package:agri_guru/shared/component/component.dart';

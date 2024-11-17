@@ -37,6 +37,7 @@
   "gasSensor": "Gas sensor",
   "soilMoisture": "Soil moisture",
   "humidity": "Humidity",
+  "ldr": "LDR sensor",
   "temperature": "Temperature",
   "topHome": "Hello Wael, ",
   "topHomeN": "Which sensor do you want today ?",

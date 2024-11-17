@@ -15,7 +15,7 @@ class NewSensors extends StatelessWidget {
   List<CardModel> sensors = [
     
       CardModel(
-        nameSensor: AppLocalizations.of(context)!.humidity,
+        nameSensor: AppLocalizations.of(context)!.ldr,
         imgSensor: "assets/images/sensor2.png",
       ),
       CardModel(

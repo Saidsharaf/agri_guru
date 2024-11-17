@@ -66,7 +66,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         imgSensor: "assets/images/sensor1.png",
       ),
       CardModel(
-        nameSensor: AppLocalizations.of(context)!.humidity,
+        nameSensor: AppLocalizations.of(context)!.ldr,
         imgSensor: "assets/images/sensor2.png",
       ),
       CardModel(

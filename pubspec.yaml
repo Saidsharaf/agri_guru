@@ -136,10 +136,6 @@ flutter:
       fonts:
         - asset: assets/fonts/body.ttf
 
-    - family: Name
-      fonts:
-        - asset: assets/fonts/name.ttf
-
     - family: Title
       fonts:
         - asset: assets/fonts/title.ttf
@@ -152,13 +148,6 @@ flutter:
       fonts:
         - asset: assets/fonts/inter.ttf
 
-    - family: Frank
-      fonts:
-        - asset: assets/fonts/frank.ttf
-
-    - family: Zuume
-      fonts:
-        - asset: assets/fonts/zuume.otf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

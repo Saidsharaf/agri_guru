@@ -95,12 +95,16 @@ class _DegreeState extends State<Degree> with SingleTickerProviderStateMixin {
                             title: AppLocalizations.of(context)!.temperature,
                             img: "assets/images/sensor1.png",
                             background: Colors.purple,
+                            txt: "°C",
+                            random: getRandomTwo(),
                             onPress: () {
                             }),
                         itemDashboard(
                             title: AppLocalizations.of(context)!.gasSensor,
                             img: "assets/images/sensor4.png",
                             background: Colors.brown,
+                            random: generateRandomNumber(),
+                            txt: " ",
                             onPress: () {
                               
                             },
@@ -109,13 +113,26 @@ class _DegreeState extends State<Degree> with SingleTickerProviderStateMixin {
                           title: AppLocalizations.of(context)!.soilMoisture,
                           img: "assets/images/sensor3.png",
                           background: Colors.indigo,
+                          random: getRandomLight(),
+                          txt: "%",
                           onPress: () {},
                         ),
                         itemDashboard(
                             title: AppLocalizations.of(context)!.humidity,
+                            img: "assets/images/humidity.png",
+                            background: Colors.teal,
+                            txt: "%",
+                            random: getRandomTwo(),
+                            onPress: () {},
+                            ),
+                        itemDashboard(
+                            title: AppLocalizations.of(context)!.ldr,
                             img: "assets/images/sensor2.png",
                             background: Colors.teal,
-                            onPress: () {}),
+                            random: getRandomLight(),
+                            txt: "%",
+                            onPress: () {},
+                            ),
                       ],
                     ),
                   ),
@@ -133,7 +150,8 @@ class _DegreeState extends State<Degree> with SingleTickerProviderStateMixin {
     itemDashboard(
           {String? title,
           String? img,
-          
+          String? txt,
+          String? random,
           Color? background,
           Function()? onPress}) =>
       GestureDetector(
@@ -158,7 +176,14 @@ class _DegreeState extends State<Degree> with SingleTickerProviderStateMixin {
                 title!.toUpperCase(),
                 // style: ,
               ),
-              Text(getRandom(),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(random!),
+                  SizedBox(width: 2,),
+                  Text(txt!),
+                ],
+              ),
             ],
           ),
         ),
@@ -167,4 +192,15 @@ class _DegreeState extends State<Degree> with SingleTickerProviderStateMixin {
          final random = Random();
         return (20 + random.nextInt(51)).toString();
       }
+      String getRandomTwo(){
+         final random = Random();
+        return (15 + random.nextInt(23)).toString();
+      }
+      String getRandomLight(){
+         final random = Random();
+        return (6 + random.nextInt(85)).toString();
+      }
+      String generateRandomNumber() {
+  return Random().nextDouble().toStringAsFixed(2);
+}
 }

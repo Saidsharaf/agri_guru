@@ -31,7 +31,7 @@ class Humidity extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.humidity,
+                      AppLocalizations.of(context)!.ldr,
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
