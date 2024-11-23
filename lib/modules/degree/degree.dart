@@ -79,7 +79,6 @@ class _DegreeState extends State<Degree> with SingleTickerProviderStateMixin {
                 Container(
                   color: Colors.white,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius:
